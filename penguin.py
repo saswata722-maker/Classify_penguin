@@ -39,14 +39,18 @@ def predict_penguin(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_
     return le.inverse_transform(pred)[0]
 
 print("Enter penguin measurements:")
-bl = float(input("Bill length (mm): "))
-bd = float(input("Bill depth (mm): "))
-fl = float(input("Flipper length (mm): "))
-bm = float(input("Body mass (g): "))
-sx = input("Sex (Male/Female): ")
+try:
+    bl = float(input("Bill length (mm): "))
+    bd = float(input("Bill depth (mm): "))
+    fl = float(input("Flipper length (mm): "))
+    bm = float(input("Body mass (g): "))
+    sx = input("Sex (Male/Female): ")
 
-species = predict_penguin(bl, bd, fl, bm, sx)
-print(f"Predicted species: {species}")
+    species = predict_penguin(bl, bd, fl, bm, sx)
+    print(f"Predicted species: {species}")
+except ValueError:
+    print("Invalid input! Please enter valid numeric values for measurements.")
+
 y_pred = model.predict(x_test)
 
 #print(f"Accuracy{accuracy_score(y_test,y_pred):.2f}")
